@@ -73,13 +73,15 @@ def game_loop():
             pygame.display.update()
 
             for event in pygame.event.get():
+                if event.type == pygame.QUIT:  # ✨ 新增：如果玩家点击了红叉，直接彻底退出
+                    game_over = True
+                    game_close = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:  # 按 Q 彻底退出
                         game_over = True
                         game_close = False
                     if event.key == pygame.K_c:  # 按 C 重新开始
                         game_loop()
-
         # 【正常游戏状态】监听键盘上下左右控制
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
